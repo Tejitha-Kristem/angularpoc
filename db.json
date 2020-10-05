@@ -1,0 +1,124 @@
+{
+  "student": [
+    {
+      "id": "1",
+      "name": "rani",
+      "class": "5",
+      "add": "dono:787a,cpp street,bgl",
+      "email": "deadmanlivez@gmail.com",
+      "phone": "9885623157"
+    },
+    {
+      "id": "2",
+      "name": "devi",
+      "class": "6",
+      "add": "abc, XYZ",
+      "email": "deadmanlivez@gmail.com",
+      "phone": 9848022332
+    },
+    {
+      "id": "3",
+      "name": "raj",
+      "class": "10",
+      "add": "990",
+      "email": "deadmanlivez@gmail.com",
+      "phone": 9848022333
+    },
+    {
+      "id": "4",
+      "name": "mahi",
+      "class": "6",
+      "add": "990",
+      "email": "deadmanlivez@gmail.com",
+      "phone": 9848022334
+    },
+    {
+      "id": "5",
+      "name": "ravali",
+      "class": "14",
+      "add": "990",
+      "email": "deadmanlivez@gmail.com",
+      "phone": 9848022335
+    },
+    {
+      "id": "6",
+      "name": "lahari",
+      "class": "6",
+      "add": "990",
+      "email": "deadmanlivez@gmail.com",
+      "phone": 9848022336
+    },
+    {
+      "id": "7",
+      "name": "pranay",
+      "class": "12",
+      "add": "990",
+      "email": "deadmanlivez@gmail.com",
+      "phone": 9848022337
+    },
+    {
+      "id": "8",
+      "name": "santhosh",
+      "class": "1",
+      "add": "990",
+      "email": "deadmanlivez@gmail.com",
+      "phone": 9848022338
+    },
+    {
+      "id": "9",
+      "name": "ganesh",
+      "class": "2",
+      "add": "990",
+      "email": "deadmanlivez@gmail.com",
+      "phone": 9848022339
+    },
+    {
+      "id": "10",
+      "name": "tejitha",
+      "class": "6",
+      "add": "990",
+      "email": "teji@gmail.com",
+      "phone": 9848022330
+    },
+    {
+      "id": "11",
+      "name": "charitha",
+      "class": "6",
+      "add": "990",
+      "email": "charitha@gmail.com",
+      "phone": 9848022311
+    },
+    {
+      "id": "12",
+      "name": "KALYAN",
+      "class": "8",
+      "add": "chennai",
+      "email": "praveen.ravipati@gmail.com",
+      "phone": "4567895555"
+    },
+    {
+      "id": "13",
+      "name": "roja",
+      "class": "9",
+      "add": "pune",
+      "email": "rosi@gmail.com",
+      "phone": "7418529637"
+    },
+    {
+      "id": "14",
+      "name": "abcd",
+      "class": "14",
+      "add": "xyz",
+      "email": "xyx@gmail.com",
+      "phone": "89889888"
+    },
+    {
+      "id": "15",
+      "name": "t",
+      "class": "1",
+      "add": "kkk",
+      "email": "k@gmail.com",
+      "phone": "8888888555"
+    }
+  ]
+}

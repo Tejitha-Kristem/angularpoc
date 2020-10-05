@@ -1,0 +1,265 @@
+<div class=" container-fluid" style="text-align: center; background-color: #bbb1b14d;;">
+  <h2 style="text-align: center;">Student Information</h2><br>
+  <div class="row">
+    <div class="col-md-12">
+      <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search by title" style="max-width: 15%;position: relative;
+      left: 105px;top: 31px;">
+
+      <button type="button" class="btn btn-info add-new" (click)="add()" data-toggle="modal" data-target="#myModal1"
+        style=" border-radius: 50px;position: relative;
+      left: 38%;"><i class="fa fa-plus"></i> Add New</button>
+      <br>
+      <br>
+      <table class="table container table-striped table-bordered text-centered">
+        <thead>
+          <tr>
+            <th scope="col">Student Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Class</th>
+            <th scope="col">Adress</th>
+            <th scope="col">Email ID</th>
+            <th scope="col">Phone NO.</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let x of details | namefilter :term | paginate: {itemsPerPage: 10, currentPage: p }'>
+            <td>{{x.id}}</td>
+            <td>{{x.name}}</td>
+            <td>{{x.class}}</td>
+            <td>{{x.add}}</td>
+            <td>{{x.email}}</td>
+            <td>{{x.phone}}</td>
+            <td>
+              <a class="edit" title="Edit" (click)='edit(x)' data-toggle="modal" data-target="#myModal"><i
+                  class="material-icons"
+                  style="color:#07229b; font-size: 20px; cursor: pointer;">&#xE254;</i></a>&nbsp;&nbsp;
+
+              <a class="delete" title="Delete" (click)="delete(x.id)" data-toggle="tooltip"><i class="material-icons"
+                  style="color:
+               #e86975; font-size: 20px; cursor: pointer;">&#xE872;</i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- pagination -->
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-xs-12 col-12">
+          <pagination-controls class="d-block float-right" (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+    <!-- edit form -->
+
+    <div class="modal" id="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color: cadetblue;">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="col-md-10 " *ngIf="status">
+              <form #editform="ngForm" (submit)="sub(editform.value)">
+                <div class="form-group">
+                  <label>ID</label>
+                  <input class="form-control" [(ngModel)]="id1" name="id2" required #idfld1="ngModel" pattern="[0-9]+"
+                    [ngClass]="{'is-invalid': idfld1.touched && idfld1.invalid ,'is-valid':idfld1.valid}">
+                </div>
+                <section *ngIf="idfld1.touched && idfld1.invalid">
+
+                  <p *ngIf="idfld1.errors.required" class="txt"> Id required*</p>
+
+                  <p *ngIf="idfld1.errors.pattern" class="txt">Only numbers</p>
+
+                </section>
+                <!-- name field -->
+                <div class="form-group">
+                  <label> Name:</label>
+                  <input class="form-control" [(ngModel)]="name1" name="name2" required #nmfld1="ngModel" minlength="3"
+                    pattern="[A-Za-z]+"
+                    [ngClass]="{'is-invalid': nmfld1.touched && nmfld1.invalid ,'is-valid':nmfld1.valid}">
+                </div>
+                <section *ngIf="nmfld1.touched && nmfld1.invalid">
+
+                  <p *ngIf="nmfld1.errors.required" class="txt"> name required*</p>
+                  <p *ngIf="nmfld1.errors.pattern" class="txt">Numbers / Symbols are not allowed</p>
+                  <p *ngIf="nmfld1.errors.minlength" class="txt">atleast 3 characters</p>
+
+                </section>
+                <!-- Class field -->
+                <div class="form-group">
+                  <label> class:</label>
+                  <input class="form-control" [(ngModel)]="class1" name="class2" minlength="1-2" pattern="[0-9]+"
+                    #clfld1="ngModel"
+                    [ngClass]="{'is-invalid': clfld1.touched && clfld1.invalid ,'is-valid':clfld1.valid}">
+                </div>
+                <section *ngIf="clfld1.touched && clfld1.invalid">
+
+                  <p *ngIf="clfld1.errors.required" class="txt"> Class required*</p>
+                  <p *ngIf="clfld1.errors.minlength" class="txt">atleast 1 character</p>
+                  <p *ngIf="clfld1.errors.pattern" class="txt">Only Numbers</p>
+
+                </section>
+                <!-- Adress field -->
+                <div class="form-group">
+                  <label> Address: </label>
+                  <input class="form-control" [(ngModel)]="add1" name="add2" required #addfld1="ngModel"
+                    [ngClass]="{'is-invalid': addfld1.touched && addfld1.invalid ,'is-valid':addfld1.valid}">
+                </div>
+                <section *ngIf="addfld1.touched && addfld1.invalid">
+
+                  <p *ngIf="addfld1.errors.required" class="txt"> Address required*</p>
+
+                </section>
+                <!-- Email field -->
+                <div class="form-group">
+                  <label> Email Id:</label>
+                  <input class="form-control" [(ngModel)]="email1" name="email2" required #emlfld1="ngModel" email
+                    [ngClass]="{'is-invalid':emlfld1.invalid && emlfld1.touched,'is-valid':emlfld1.valid}">
+                </div>
+
+                <section *ngIf="emlfld1.touched && emlfld1.invalid">
+                  <p *ngIf="emlfld1.errors.required" class="txt"> email req</p>
+                  <p *ngIf="emlfld1.errors.email" class="txt">enter valid email</p>
+                </section>
+                <!-- Phone field -->
+                <div class="form-group">
+                  <label> Phone no:</label>
+                  <input class="form-control" [(ngModel)]="phone1" name="phone2" required #tel1="ngModel" minlength="10"
+                    maxlength="10" pattern="[0-9]+"
+                    [ngClass]="{'is-invalid': tel1.invalid && tel1.touched,'is-valid':tel1.valid}">
+                </div>
+                <section *ngIf="tel1.touched && tel1.invalid">
+                  <p *ngIf="tel1.errors.required" class="txt">Telephone no. is needed</p>
+                  <p *ngIf="tel1.errors?.minlength" class="txt">10 numbers are needed</p>
+                  <p *ngIf="tel1.errors.pattern" class="txt">Only numbers</p>
+                </section>
+                <br><br>
+                <button class="btn btn-primary" style="position: relative;
+                left:46px;">submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- add from -->
+
+    <div class="modal" id="myModal1" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color: cadetblue;">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="col-md-10 " *ngIf="stat">
+              <form #addform="ngForm" (submit)="posting(addform.value)">
+                <!-- <label>ID</label>
+                <input class="form-control" [(ngModel)]="id11" name="id22" required>
+                <label> Name:</label>
+                <input class="form-control" [(ngModel)]="name11" name="name22" required>
+               <label>  class:</label>
+                <input class="form-control" [(ngModel)]="class11" name="class22" required>
+               <label>  Address: </label>
+                <input class="form-control" [(ngModel)]="add11" name="add22" required>
+              <label>    Email Id:</label>
+                <input class="form-control" [(ngModel)]="email11" name="email22" required>
+              <label>  Phone no:</label>
+                <input class="form-control" [(ngModel)]="phone11" name="phone22" required> -->
+                <!-- id field -->
+                <div class="form-group">
+                  <label>ID</label>
+                  <input class="form-control" [(ngModel)]="id11" name="id22" required #idfld="ngModel" pattern="[0-9]+"
+                    [ngClass]="{'is-invalid': idfld.touched && idfld.invalid ,'is-valid':idfld.valid}">
+                </div>
+                <section *ngIf="idfld.touched && idfld.invalid">
+
+                  <p *ngIf="idfld.errors.required" class="txt"> Id required*</p>
+
+                  <p *ngIf="idfld.errors.pattern" class="txt">Only numbers</p>
+
+                </section>
+                <!-- name field -->
+                <div class="form-group">
+                  <label> Name:</label>
+
+                  <input class="form-control" [(ngModel)]="name11" name="name22" required #nmfld="ngModel" minlength="3"
+                    pattern="[A-Za-z]+"
+                    [ngClass]="{'is-invalid': nmfld.touched && nmfld.invalid ,'is-valid':nmfld.valid}">
+                </div>
+                <section *ngIf="nmfld.touched && nmfld.invalid">
+
+                  <p *ngIf="nmfld.errors.required" class="txt"> name required*</p>
+                  <p *ngIf="nmfld.errors.pattern" class="txt">Numbers / Symbols are not allowed</p>
+                  <p *ngIf="nmfld.errors.minlength" class="txt">atleast 3 characters</p>
+
+                </section>
+                <!-- Class field -->
+                <div class="form-group">
+                  <label> class:</label>
+                  <input class="form-control" [(ngModel)]="class11" name="class22" required minlength="1-2"
+                    pattern="[0-9]+" #clfld="ngModel"
+                    [ngClass]="{'is-invalid': clfld.touched && clfld.invalid ,'is-valid':clfld.valid}">
+                </div>
+                <section *ngIf="clfld.touched && clfld.invalid">
+
+                  <p *ngIf="clfld.errors.required" class="txt"> Class required*</p>
+                  <p *ngIf="clfld.errors.minlength" class="txt">atleast 1 character</p>
+                  <p *ngIf="clfld.errors.pattern" class="txt">Only Numbers</p>
+
+                </section>
+                <!-- Adress field -->
+                <div class="form-group">
+                  <label>Address:</label>
+                  <input class="form-control" [(ngModel)]="add11" name="add22" required #addfld="ngModel"
+                    [ngClass]="{'is-invalid': addfld.touched && addfld.invalid ,'is-valid':addfld.valid}">
+                </div>
+                <section *ngIf="addfld.touched && addfld.invalid">
+
+                  <p *ngIf="addfld.errors.required" class="txt"> Address required*</p>
+
+                </section>
+                <!-- Email field -->
+                <div class="form-group">
+                  <label> Email Id:</label>
+                  <input class="form-control" [(ngModel)]="email11" name="email22" required #emlfld="ngModel" email
+                    [ngClass]="{'is-invalid':emlfld.invalid && emlfld.touched,'is-valid':emlfld.valid}">
+                </div>
+
+                <section *ngIf="emlfld.touched && emlfld.invalid">
+                  <p *ngIf="emlfld.errors.required" class="txt"> email req</p>
+                  <p *ngIf="emlfld.errors.email" class="txt">enter valid email</p>
+                </section>
+                <!-- Phone field -->
+                <div class="form-group">
+                  <label>Phone no:</label>
+                  <input class="form-control" [(ngModel)]="phone11" name="phone22" required #tel="ngModel"
+                    minlength="10" maxlength="10" pattern="[0-9]+"
+                    [ngClass]="{'is-invalid': tel.invalid && tel.touched,'is-valid':tel.valid}">
+                </div>
+                <section *ngIf="tel.touched && tel.invalid">
+                  <p *ngIf="tel.errors.required" class="txt">Telephone no. is needed</p>
+                  <p *ngIf="tel.errors?.minlength" class="txt">10 numbers are needed</p>
+                  <p *ngIf="tel.errors.pattern" class="txt">Only numbers</p>
+                </section>
+                <br><br>
+                <button class="btn btn-primary" style="position: relative;
+                left:31px;" [disabled]="addform.invalid" type="submit">submit</button>&nbsp;
+                <button type="reset" style="position: relative;
+                left: 47px;" class="btn btn-secondary demo">reset</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
